@@ -3,7 +3,7 @@ from pathlib import Path
 
 import flet as ft
 
-# ---------- Cores (tema escuro) ----------
+
 FUNDO = "#000000"
 CARTAO = "#121212"
 BOTAO = "#1F1F24"
@@ -17,7 +17,7 @@ async def main(page: ft.Page):
     page.theme_mode = ft.ThemeMode.DARK
     page.bgcolor = FUNDO
     page.padding = 0
-    try:  # tamanho de celular ao testar no computador
+    try: 
         page.window.width = 420
         page.window.height = 800
     except Exception:
@@ -31,7 +31,7 @@ async def main(page: ft.Page):
     seletor = ft.FilePicker()
     page.services.append(seletor)
 
-    # ---------- Componentes ----------
+    
     titulo = ft.Text("Sem título", size=20, weight=ft.FontWeight.BOLD, color=TEXTO)
     status = ft.Text("Pronto", size=12, color=TEXTO_SUAVE)
 
@@ -67,7 +67,7 @@ async def main(page: ft.Page):
         status.value = msg
         page.update()
 
-    # ---------- Janela flutuante própria (sem depender de AlertDialog) ----------
+    
     cartao_modal = ft.Container(bgcolor=CARTAO, border_radius=24, padding=24, width=320)
     camada = ft.Container(
         visible=False,
@@ -139,7 +139,6 @@ async def main(page: ft.Page):
             return await salvar()
         return True
 
-    # ---------- Ações ----------
     async def novo(e=None):
         if not await confirmar_descarte():
             return
@@ -233,7 +232,6 @@ async def main(page: ft.Page):
         camada.visible = True
         page.update()
 
-    # ---------- Layout ----------
     cabecalho = ft.Row(
         alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
         vertical_alignment=ft.CrossAxisAlignment.CENTER,
